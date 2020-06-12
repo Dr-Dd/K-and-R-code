@@ -4,12 +4,12 @@
    that.
 
    #+begin_src C :results verbatim :tangle ch01/hello.c :mkdirp yes
-   #include <stdio.h>
+     #include <stdio.h>
 
-   int main()
-   {
-     printf("hello, world\n");
-   }
+     int main()
+     {
+       printf("hello, world\n");
+     }
    #+end_src
 
    #+RESULTS:
@@ -24,13 +24,13 @@
    the same directory.
 
    #+begin_src bash
-   cc ch01/hello.c -o ch01/a.out
+     cc ch01/hello.c -o ch01/a.out
    #+end_src
 
    Now let's run the executable
 
    #+begin_src bash :results verbatim
-   ./ch01/a.out
+     ./ch01/a.out
    #+end_src
 
    #+RESULTS:
@@ -51,8 +51,8 @@
    a ~\n~, the following code block will give a compilation error
 
    #+begin_src C :results verbatim
-   printf("hello, world
-   ")
+     printf("hello, world
+            ")
    #+end_src
 
    #+RESULTS:
@@ -66,25 +66,25 @@
    conversions
 
    #+begin_src C :results verbatim :tangle ch01/fahreneit-c-table.c :mkdirp yes
-   #include <stdio.h>
+     #include <stdio.h>
 
-   /* print Fahreneit-Celsius table
-      for fahr = 0, 20, ..., 300 */
-   int main()
-   {
-     int fahr, celsius;
-     int lower, upper, step;
-     lower = 0;
-     upper = 300;
-     step = 20;
+     /* print Fahreneit-Celsius table
+        for fahr = 0, 20, ..., 300 */
+     int main()
+     {
+       int fahr, celsius;
+       int lower, upper, step;
+       lower = 0;
+       upper = 300;
+       step = 20;
 
-     fahr = lower;
-     while(fahr <= upper) {
-       celsius = 5 * (fahr-32)/9;
-       printf("%d\t%d\n", fahr, celsius);
-       fahr = fahr + step;
+       fahr = lower;
+       while(fahr <= upper) {
+         celsius = 5 * (fahr-32)/9;
+         printf("%d\t%d\n", fahr, celsius);
+         fahr = fahr + step;
+       }
      }
-   }
    #+end_src
 
    #+RESULTS:
@@ -145,25 +145,25 @@
    program (to avoid imprecise temperature).
 
    #+begin_src C :results verbatim
-   #include <stdio.h>
+     #include <stdio.h>
 
-   /* print Fahreneit-Celsius table
-      for fahr = 0, 20, ..., 300 */
-   int main()
-   {
-     float fahr, celsius; /* we fixed this */
-     float lower, upper, step; /* we fixed this */
-     lower = 0;
-     upper = 300;
-     step = 20;
+     /* print Fahreneit-Celsius table
+        for fahr = 0, 20, ..., 300 */
+     int main()
+     {
+       float fahr, celsius; /* we fixed this */
+       float lower, upper, step; /* we fixed this */
+       lower = 0;
+       upper = 300;
+       step = 20;
 
-     fahr = lower;
-     while(fahr <= upper) {
-       celsius = (5.0/9.0) * (fahr-32.0); /* we fixed this */
-       printf("%3.0f %6.1f\n", fahr, celsius);
-       fahr = fahr + step;
+       fahr = lower;
+       while(fahr <= upper) {
+         celsius = (5.0/9.0) * (fahr-32.0); /* we fixed this */
+         printf("%3.0f %6.1f\n", fahr, celsius);
+         fahr = fahr + step;
+       }
      }
-   }
    #+end_src
 
    #+RESULTS:
@@ -197,26 +197,26 @@
 
 *** 1-3 Exercise
     #+begin_src C :results verbatim :tangle ch01/ex3.c :mkdirp yes
-    /* Modify the temperature conversion program to print a
-    heading above the table. */
-    #include <stdio.h>
+      /* Modify the temperature conversion program to print a
+         heading above the table. */
+      #include <stdio.h>
 
-    int main()
-    {
-     float fahr, celsius; /* we fixed this */
-     float lower, upper, step; /* we fixed this */
-     lower = 0;
-     upper = 300;
-     step = 20;
+      int main()
+      {
+        float fahr, celsius; /* we fixed this */
+        float lower, upper, step; /* we fixed this */
+        lower = 0;
+        upper = 300;
+        step = 20;
 
-     fahr = lower;
-     printf("Fahreneit Celsius\n");
-     while(fahr <= upper) {
-       celsius = (5.0/9.0) * (fahr-32.0); /* we fixed this */
-       printf("%9.0f %7.1f\n", fahr, celsius);
-       fahr = fahr + step;
-     }
-    }
+        fahr = lower;
+        printf("Fahreneit Celsius\n");
+        while(fahr <= upper) {
+          celsius = (5.0/9.0) * (fahr-32.0); /* we fixed this */
+          printf("%9.0f %7.1f\n", fahr, celsius);
+          fahr = fahr + step;
+        }
+      }
     #+end_src
 
     #+RESULTS:
@@ -242,26 +242,26 @@
 
 *** 1-4 Exercise
     #+begin_src C :results verbatim :tangle ch01/ex4.c :mkdirp yes
-    /* Write a program to print the corresponding Celsius to
-    Fahrenheit table. */
-    #include <stdio.h>
+      /* Write a program to print the corresponding Celsius to
+         Fahrenheit table. */
+      #include <stdio.h>
 
-    int main()
-    {
-     float fahr, celsius; /* we fixed this */
-     float lower, upper, step; /* we fixed this */
-     lower = 0;
-     upper = 300;
-     step = 20;
+      int main()
+      {
+        float fahr, celsius; /* we fixed this */
+        float lower, upper, step; /* we fixed this */
+        lower = 0;
+        upper = 300;
+        step = 20;
 
-     celsius = lower;
-     printf("Celsius Fahreneit\n");
-     while(celsius <= upper) {
-       fahr = ((9.0/5.0) * celsius) + 32.0; /* we fixed this */
-       printf("%7.0f %9.1f\n", celsius, fahr);
-       celsius = celsius + step;
-     }
-    }
+        celsius = lower;
+        printf("Celsius Fahreneit\n");
+        while(celsius <= upper) {
+          fahr = ((9.0/5.0) * celsius) + 32.0; /* we fixed this */
+          printf("%7.0f %9.1f\n", celsius, fahr);
+          celsius = celsius + step;
+        }
+      }
     #+end_src
 
     #+RESULTS:
