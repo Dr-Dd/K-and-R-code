@@ -284,3 +284,5 @@
         280     536.0
         300     572.0
     #+end_example
+
+** TODO 1.3 The for statement
