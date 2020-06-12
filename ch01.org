@@ -1,5 +1,5 @@
 * Chapter 1 - A Tutorial Introduction
-** 1.1 - Getting Started
+** 1.1 Getting Started
    Let's print a ~/hello world/~, by writing a program that does just
    that.
 
@@ -189,5 +189,98 @@
    Notice how the arithmetic operators have builtin operations for
    floating point and integer numbers and convert them
    automagically based on the variable type. But it's good
-   practice to emphasize floating point number usage by writing
+   practice to emphasize floating point numbers usage by writing
    the decimal part explicitly.
+
+   Floating point characters print wildcards is %f and follows the
+   syntax ~%<#fields>.<#decimals>f~
+
+*** 1-3 Exercise
+    #+begin_src C :results verbatim :tangle ch01/ex3.c :mkdirp yes
+    /* Modify the temperature conversion program to print a
+    heading above the table. */
+    #include <stdio.h>
+
+    int main()
+    {
+     float fahr, celsius; /* we fixed this */
+     float lower, upper, step; /* we fixed this */
+     lower = 0;
+     upper = 300;
+     step = 20;
+
+     fahr = lower;
+     printf("Fahreneit Celsius\n");
+     while(fahr <= upper) {
+       celsius = (5.0/9.0) * (fahr-32.0); /* we fixed this */
+       printf("%7.0f %9.1f\n", fahr, celsius);
+       fahr = fahr + step;
+     }
+    }
+    #+end_src
+
+    #+RESULTS:
+    #+begin_example
+    Fahreneit Celsius
+          0     -17.8
+         20      -6.7
+         40       4.4
+         60      15.6
+         80      26.7
+        100      37.8
+        120      48.9
+        140      60.0
+        160      71.1
+        180      82.2
+        200      93.3
+        220     104.4
+        240     115.6
+        260     126.7
+        280     137.8
+        300     148.9
+    #+end_example
+
+*** 1-4 Exercise
+    #+begin_src C :results verbatim :tangle ch01/ex4.c :mkdirp yes
+    /* Write a program to print the corresponding Celsius to
+    Fahrenheit table. */
+    #include <stdio.h>
+
+    int main()
+    {
+     float fahr, celsius; /* we fixed this */
+     float lower, upper, step; /* we fixed this */
+     lower = 0;
+     upper = 300;
+     step = 20;
+
+     celsius = lower;
+     printf("Celsius Fahreneit\n");
+     while(celsius <= upper) {
+       fahr = ((9.0/5.0) * celsius) + 32.0; /* we fixed this */
+       printf("%7.0f %9.1f\n", celsius, fahr);
+       celsius = celsius + step;
+     }
+    }
+    #+end_src
+
+    #+RESULTS:
+    #+begin_example
+    Celsius Fahreneit
+          0      32.0
+         20      68.0
+         40     104.0
+         60     140.0
+         80     176.0
+        100     212.0
+        120     248.0
+        140     284.0
+        160     320.0
+        180     356.0
+        200     392.0
+        220     428.0
+        240     464.0
+        260     500.0
+        280     536.0
+        300     572.0
+    #+end_example
