@@ -1,6 +1,6 @@
 * Chapter 1 - A Tutorial Introduction
 ** 1.1 Getting Started
-   Let's print a ~/hello world/~, by writing a program that does just
+   Let's print a ~hello world~, by writing a program that does just
    that.
 
    #+begin_src C :results verbatim :tangle ch01/hello.c :mkdirp yes
@@ -16,11 +16,11 @@
    : hello, world
 
    NOTE: The function above will work even if you remove the type
-   declaration (~/int/~), since the compiler just searches for the
-   function named ~/main()/~.
+   declaration (~int~), since the compiler just searches for the
+   function named ~main()~.
 
-   When we compile a file ~/.c/~ with the compiler with no other
-   arguments, it will produce an executable called ~/a.out/~ in
+   When we compile a file ~.c~ with the compiler with no other
+   arguments, it will produce an executable called ~a.out~ in
    the same directory.
 
    #+begin_src bash
@@ -37,7 +37,7 @@
    : hello, world
 
    We are remembered of the concept of /functions/, /variables/
-   and /statements/. We are remembered of the fact that ~/main/~
+   and /statements/. We are remembered of the fact that ~main~
    is the only reserved keyword for function names.
 
    We are reminded of the use of ~#include <lib>~.
@@ -213,7 +213,7 @@
      printf("Fahreneit Celsius\n");
      while(fahr <= upper) {
        celsius = (5.0/9.0) * (fahr-32.0); /* we fixed this */
-       printf("%7.0f %9.1f\n", fahr, celsius);
+       printf("%9.0f %7.1f\n", fahr, celsius);
        fahr = fahr + step;
      }
     }
@@ -222,22 +222,22 @@
     #+RESULTS:
     #+begin_example
     Fahreneit Celsius
-          0     -17.8
-         20      -6.7
-         40       4.4
-         60      15.6
-         80      26.7
-        100      37.8
-        120      48.9
-        140      60.0
-        160      71.1
-        180      82.2
-        200      93.3
-        220     104.4
-        240     115.6
-        260     126.7
-        280     137.8
-        300     148.9
+            0   -17.8
+           20    -6.7
+           40     4.4
+           60    15.6
+           80    26.7
+          100    37.8
+          120    48.9
+          140    60.0
+          160    71.1
+          180    82.2
+          200    93.3
+          220   104.4
+          240   115.6
+          260   126.7
+          280   137.8
+          300   148.9
     #+end_example
 
 *** 1-4 Exercise
