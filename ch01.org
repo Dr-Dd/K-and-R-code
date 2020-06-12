@@ -1,0 +1,193 @@
+* Chapter 1 - A Tutorial Introduction
+** 1.1 - Getting Started
+   Let's print a ~/hello world/~, by writing a program that does just
+   that.
+
+   #+begin_src C :results verbatim :tangle ch01/hello.c :mkdirp yes
+   #include <stdio.h>
+
+   int main()
+   {
+     printf("hello, world\n");
+   }
+   #+end_src
+
+   #+RESULTS:
+   : hello, world
+
+   NOTE: The function above will work even if you remove the type
+   declaration (~/int/~), since the compiler just searches for the
+   function named ~/main()/~.
+
+   When we compile a file ~/.c/~ with the compiler with no other
+   arguments, it will produce an executable called ~/a.out/~ in
+   the same directory.
+
+   #+begin_src bash
+   cc ch01/hello.c -o ch01/a.out
+   #+end_src
+
+   Now let's run the executable
+
+   #+begin_src bash :results verbatim
+   ./ch01/a.out
+   #+end_src
+
+   #+RESULTS:
+   : hello, world
+
+   We are remembered of the concept of /functions/, /variables/
+   and /statements/. We are remembered of the fact that ~/main/~
+   is the only reserved keyword for function names.
+
+   We are reminded of the use of ~#include <lib>~.
+
+   One interesting thing that we didn't realize is that the in C
+   the construct "()" defines a list of /arguments/ (just like
+   other languages, for example lisp). In this case main is an
+   empty list.
+
+   Also ~printf~ will never print a newline character unless with
+   a ~\n~, the following code block will give a compilation error
+
+   #+begin_src C :results verbatim
+   printf("hello, world
+   ")
+   #+end_src
+
+   #+RESULTS:
+
+   There many other /escape sequences/ other than ~\n~, or example
+   ~\t~ for printing tabs, ~\b~ for backspaces...
+
+** 1.2 Variables and Arithmetic Expressions
+
+   Now we'll see a program that prints a table over °C to °F
+   conversions
+
+   #+begin_src C :results verbatim :tangle ch01/fahreneit-c-table.c :mkdirp yes
+   #include <stdio.h>
+
+   /* print Fahreneit-Celsius table
+      for fahr = 0, 20, ..., 300 */
+   int main()
+   {
+     int fahr, celsius;
+     int lower, upper, step;
+     lower = 0;
+     upper = 300;
+     step = 20;
+
+     fahr = lower;
+     while(fahr <= upper) {
+       celsius = 5 * (fahr-32)/9;
+       printf("%d\t%d\n", fahr, celsius);
+       fahr = fahr + step;
+     }
+   }
+   #+end_src
+
+   #+RESULTS:
+   #+begin_example
+   0	-17
+   20	-6
+   40	4
+   60	15
+   80	26
+   100	37
+   120	48
+   140	60
+   160	71
+   180	82
+   200	93
+   220	104
+   240	115
+   260	126
+   280	137
+   300	148
+   #+end_example
+
+   We learn about comments, about declaring variables before using
+   them.
+
+   We learn about types: ~int~ is for integer, ~float~ for
+   floating point numbers. The range of these types varies
+   depending on the machine used (16bit, 32bit, 64bit registers
+   and so on).
+
+   Floating point numbers are usually 32bit in size, with a
+   magnitude between about 10^-38 and 10^38.
+
+   Other types are ~char~, an 8bit character, ~short~,
+   a short integer, ~long~, a long integer, ~double~, a double
+   precision float.
+
+   A ~while~ loop executes only if the conditional variable is
+   true, and stops once the value becomes false. If the condition
+   itself is false, then the block is skipped.
+
+   In C, integer division /truncates/ values, the fractional part
+   gets discarded. So pay attention when using these to the order
+   of operations.
+
+   ~printf~ also is not part of C core, but part of an external
+   lib.
+
+   The ~%d~ argument accepts range values in this fashion
+
+   #+begin_src
+   printf("%3d %6d\n", fahr, celsius)
+   #+end_src
+
+   3 and 6 represent the amount of fields the argument will occupy.
+
+   We can use this and floating points to fix our conversion
+   program (to avoid imprecise temperature).
+
+   #+begin_src C :results verbatim
+   #include <stdio.h>
+
+   /* print Fahreneit-Celsius table
+      for fahr = 0, 20, ..., 300 */
+   int main()
+   {
+     float fahr, celsius; /* we fixed this */
+     float lower, upper, step; /* we fixed this */
+     lower = 0;
+     upper = 300;
+     step = 20;
+
+     fahr = lower;
+     while(fahr <= upper) {
+       celsius = (5.0/9.0) * (fahr-32.0); /* we fixed this */
+       printf("%3.0f %6.1f\n", fahr, celsius);
+       fahr = fahr + step;
+     }
+   }
+   #+end_src
+
+   #+RESULTS:
+   #+begin_example
+   0  -17.8
+    20   -6.7
+    40    4.4
+    60   15.6
+    80   26.7
+   100   37.8
+   120   48.9
+   140   60.0
+   160   71.1
+   180   82.2
+   200   93.3
+   220  104.4
+   240  115.6
+   260  126.7
+   280  137.8
+   300  148.9
+   #+end_example
+
+   Notice how the arithmetic operators have builtin operations for
+   floating point and integer numbers and convert them
+   automagically based on the variable type. But it's good
+   practice to emphasize floating point number usage by writing
+   the decimal part explicitly.
